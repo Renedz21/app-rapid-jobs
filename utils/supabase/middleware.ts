@@ -52,6 +52,27 @@ export async function updateSession(request: NextRequest) {
     return NextResponse.redirect(url);
   }
 
+  // Role-based route protection
+  if (user) {
+    // El rol viene directamente del JWT (hook se encarga)
+    const userRole = user.user_metadata?.role as string;
+    const pathname = request.nextUrl.pathname;
+
+    // Check employer routes
+    if (pathname.includes("/employer") && userRole !== "employer") {
+      const url = request.nextUrl.clone();
+      url.pathname = "/dashboard/worker";
+      return NextResponse.redirect(url);
+    }
+
+    // Check worker routes
+    if (pathname.includes("/worker") && userRole !== "worker") {
+      const url = request.nextUrl.clone();
+      url.pathname = "/dashboard/employer";
+      return NextResponse.redirect(url);
+    }
+  }
+
   // IMPORTANT: You *must* return the supabaseResponse object as it is.
   // If you're creating a new response object with NextResponse.next() make sure to:
   // 1. Pass the request in it, like so:
