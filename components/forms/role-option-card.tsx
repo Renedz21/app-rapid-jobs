@@ -1,6 +1,6 @@
-import { cn } from "@/lib/utils";
 import { CheckCircle2 } from "lucide-react";
 import type { ReactNode } from "react";
+import { cn } from "@/lib/utils";
 
 type RoleOptionCardProps = {
   label: string;
@@ -24,7 +24,7 @@ export default function RoleOptionCard({
         "hover:bg-accent/50",
         selected
           ? "border-primary ring-2 ring-primary/30 bg-primary/5"
-          : "border-muted"
+          : "border-muted",
       )}
       aria-pressed={selected}
     >
@@ -34,7 +34,7 @@ export default function RoleOptionCard({
       <span
         className={cn(
           "grid h-16 w-16 place-items-center rounded-full",
-          selected ? "bg-primary/10 text-primary" : "bg-muted text-foreground"
+          selected ? "bg-primary/10 text-primary" : "bg-muted text-foreground",
         )}
       >
         {icon}

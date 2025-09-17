@@ -1,7 +1,7 @@
 "use client";
 
+import Link from "next/link";
 import { usePathname } from "next/navigation";
-
 import {
   SidebarGroup,
   SidebarGroupContent,
@@ -9,8 +9,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
-import { SidebarItem } from "./sidebar-items";
-import Link from "next/link";
+import type { SidebarItem } from "./sidebar-items";
 
 export default function SidebarNav({ items }: { items: SidebarItem[] }) {
   const pathname = usePathname();

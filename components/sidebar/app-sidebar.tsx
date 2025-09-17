@@ -9,7 +9,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
-import { getSidebarItemsForRole, UserRole } from "./sidebar-items";
+import { getSidebarItemsForRole, type UserRole } from "./sidebar-items";
 import SidebarNav from "./sidebar-nav";
 import { SidebarUser } from "./sidebar-user";
 
@@ -33,7 +33,7 @@ export function AppSidebar({ role, ...props }: AppSidebarProps) {
               asChild
               className="data-[slot=sidebar-menu-button]:!p-1.5"
             >
-              <a href="#">
+              <a href="/">
                 <span className="text-base font-semibold">Acme Inc.</span>
               </a>
             </SidebarMenuButton>
