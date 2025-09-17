@@ -2,14 +2,13 @@
 
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
-
-import { createClient } from "@/utils/supabase/server";
 import {
-  loginSchema,
   type LoginSchema,
-  registerSchema,
+  loginSchema,
   type RegisterSchema,
+  registerSchema,
 } from "@/schemas/auth/auth.schema";
+import { createClient } from "@/utils/supabase/server";
 
 export async function login(values: LoginSchema) {
   const supabase = await createClient();

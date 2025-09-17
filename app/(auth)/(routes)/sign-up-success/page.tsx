@@ -1,3 +1,6 @@
+import { ArrowRight, CheckCircle, Mail } from "lucide-react";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -5,9 +8,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { CheckCircle, Mail, ArrowRight } from "lucide-react";
-import Link from "next/link";
 
 export default function SignUpSuccessPage() {
   return (

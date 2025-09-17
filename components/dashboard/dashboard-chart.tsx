@@ -11,7 +11,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import {
-  ChartConfig,
+  type ChartConfig,
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
@@ -126,7 +126,7 @@ const chartConfig = {
 } satisfies ChartConfig;
 
 export default function DashboardChart() {
-  const [timeRange, setTimeRange] = React.useState("7d");
+  const [timeRange, _setTimeRange] = React.useState("7d");
 
   const filteredData = chartData.filter((item) => {
     const date = new Date(item.date);

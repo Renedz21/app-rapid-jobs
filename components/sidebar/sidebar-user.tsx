@@ -1,5 +1,13 @@
 "use client";
 
+import {
+  Bell,
+  CreditCard,
+  LogOut,
+  MoreVertical,
+  UserCircle,
+} from "lucide-react";
+import { useRouter } from "next/navigation";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   DropdownMenu,
@@ -17,14 +25,6 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar";
 import { createClient } from "@/utils/supabase/client";
-import {
-  LogOut,
-  MoreVertical,
-  UserCircle,
-  CreditCard,
-  Bell,
-} from "lucide-react";
-import { useRouter } from "next/navigation";
 
 export function SidebarUser({
   user,

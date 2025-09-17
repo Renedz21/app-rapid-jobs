@@ -1,0 +1,55 @@
+import react from "@vitejs/plugin-react";
+import tsconfigPaths from "vite-tsconfig-paths";
+import { defineConfig } from "vitest/config";
+
+export default defineConfig({
+  plugins: [tsconfigPaths(), react()],
+  test: {
+    globals: true,
+    environment: "jsdom",
+    setupFiles: ["./vitest.setup.ts"],
+    coverage: {
+      provider: "v8",
+      enabled: true,
+      reporter: ["text", "html", "lcov"],
+      reportsDirectory: "./coverage",
+      exclude: [
+        "node_modules/**",
+        ".next/**",
+        "coverage/**",
+        "**/*.d.ts",
+        "**/*.config.*",
+        "**/middleware.ts",
+        "app/**",
+        "**/__tests__/**",
+        "actions/**",
+        "hooks/**",
+        "schemas/**",
+        "types/**",
+        "utils/**",
+        "components/ui/alert*.tsx",
+        "components/ui/chart.tsx",
+        "components/ui/dialog.tsx",
+        "components/ui/dropdown-menu.tsx",
+        "components/ui/form.tsx",
+        "components/ui/input.tsx",
+        "components/ui/label.tsx",
+        "components/ui/progress.tsx",
+        "components/ui/select.tsx",
+        "components/ui/separator.tsx",
+        "components/ui/sheet.tsx",
+        "components/ui/sidebar.tsx",
+        "components/ui/skeleton.tsx",
+        "components/ui/textarea.tsx",
+        "components/ui/tooltip.tsx",
+        "components/sidebar/**",
+      ],
+      thresholds: {
+        lines: 30,
+        functions: 60,
+        branches: 65,
+        statements: 30,
+      },
+    },
+  },
+});

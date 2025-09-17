@@ -1,6 +1,6 @@
 import type { PropsWithChildren } from "react";
-import { AppSidebar } from "@/components/sidebar/app-sidebar";
 import { SiteHeader } from "@/components/shared/site-header";
+import { AppSidebar } from "@/components/sidebar/app-sidebar";
 import type { UserRole } from "@/components/sidebar/sidebar-items";
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import { createClient } from "@/utils/supabase/server";
@@ -27,7 +27,7 @@ export default async function DashboardLayout({ children }: PropsWithChildren) {
         <SiteHeader />
         <div className="flex flex-1 flex-col">
           <div className="@container/main flex flex-1 flex-col gap-2">
-            <div className="flex flex-col gap-4 py-4 md:gap-6 md:py-6">
+            <div className="flex flex-col px-4 lg:px-6 gap-4 py-4 md:gap-6 md:py-6">
               {children}
             </div>
           </div>
