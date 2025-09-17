@@ -10,9 +10,7 @@
     "fix": "biome check --write",
     "format": "biome format --write",
     "test": "vitest",
-    "test:run": "vitest run",
-    "test:coverage": "vitest run --coverage",
-    "test:watch": "vitest --watch"
+    "test:run": "vitest run"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",

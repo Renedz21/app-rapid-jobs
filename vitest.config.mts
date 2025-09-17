@@ -3,11 +3,12 @@ import tsconfigPaths from "vite-tsconfig-paths";
 import { defineConfig } from "vitest/config";
 
 export default defineConfig({
-  plugins: [tsconfigPaths(), react()],
+  plugins: [react(), tsconfigPaths()],
   test: {
     globals: true,
     environment: "jsdom",
     setupFiles: ["./vitest.setup.ts"],
+    css: true,
     coverage: {
       provider: "v8",
       enabled: true,
