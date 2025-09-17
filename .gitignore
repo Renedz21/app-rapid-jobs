@@ -36,6 +36,14 @@ yarn-error.log*
 # vercel
 .vercel
 
+# warp
+warp.md
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Environment variables
+.env
+.env.development.local
+.env.production.local
