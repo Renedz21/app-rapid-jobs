@@ -11,6 +11,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import type { Job } from "@/types/supabase";
 import { createClient } from "@/utils/supabase/server";
 
 export default async function EmployerPostingsPage() {
@@ -29,10 +30,6 @@ export default async function EmployerPostingsPage() {
     .select("*")
     .eq("employer_id", user.id);
 
-  if (!jobs) {
-    return <div>No hay empleos publicados</div>;
-  }
-
   return (
     <>
       <DashboardHeader
@@ -46,21 +43,29 @@ export default async function EmployerPostingsPage() {
       <JobKpiEmployer />
 
       <Card>
-        <CardHeader>
-          <CardTitle>Mis empleos publicados</CardTitle>
-          <CardDescription>
-            Gestiona y monitorea el estado de tus ofertas de empleo
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <div className="space-y-4">
-            <Each
-              of={jobs}
-              render={(job) => <JobCardEmployer job={job} />}
-              getKey={(job) => job.id}
-            />
+        {jobs && jobs.length > 0 ? (
+          <>
+            <CardHeader>
+              <CardTitle>Mis empleos publicados</CardTitle>
+              <CardDescription>
+                Gestiona y monitorea el estado de tus ofertas de empleo
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-4">
+                <Each
+                  of={jobs as Job[]}
+                  render={(job) => <JobCardEmployer job={job} />}
+                  getKey={(job) => job.id}
+                />
+              </div>
+            </CardContent>
+          </>
+        ) : (
+          <div className="flex items-center justify-center h-full">
+            <p className="text-muted-foreground">No hay empleos publicados</p>
           </div>
-        </CardContent>
+        )}
       </Card>
     </>
   );

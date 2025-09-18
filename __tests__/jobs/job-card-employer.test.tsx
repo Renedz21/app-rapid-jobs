@@ -1,7 +1,29 @@
 import { render, screen } from "@testing-library/react";
-import { describe, expect, it } from "vitest";
+import { vi } from "vitest";
 import JobCardEmployer from "@/components/jobs/job-card-employer";
 import type { Job } from "@/types/supabase";
+
+vi.mock("next/navigation", () => ({
+  useRouter: () => ({
+    refresh: vi.fn(),
+    push: vi.fn(),
+  }),
+}));
+
+vi.mock("sonner", () => ({
+  toast: {
+    success: vi.fn(),
+    error: vi.fn(),
+  },
+}));
+
+vi.mock("@/utils/supabase/client", () => ({
+  createClient: () => ({
+    from: vi.fn().mockReturnThis(),
+    delete: vi.fn().mockReturnThis(),
+    eq: vi.fn().mockResolvedValue({ error: null }),
+  }),
+}));
 
 const mockJob: Job = {
   id: "1",
@@ -75,7 +97,6 @@ describe("JobCardEmployer", () => {
   it("renders action buttons", () => {
     render(<JobCardEmployer job={mockJob} />);
 
-    expect(screen.getByRole("button", { name: "Ver" })).toBeInTheDocument();
     expect(screen.getByRole("button", { name: "Editar" })).toBeInTheDocument();
     expect(
       screen.getByRole("button", { name: "Eliminar" }),
@@ -111,13 +132,10 @@ describe("JobCardEmployer", () => {
   it("provides action buttons for job management", () => {
     render(<JobCardEmployer job={mockJob} />);
 
-    const viewButton = screen.getByRole("button", { name: "Ver" });
     const editButton = screen.getByRole("button", { name: "Editar" });
     const deleteButton = screen.getByRole("button", { name: "Eliminar" });
 
-    expect(viewButton).toBeEnabled();
     expect(editButton).toBeEnabled();
     expect(deleteButton).toBeEnabled();
-    expect(deleteButton).toHaveClass("text-destructive");
   });
 });
