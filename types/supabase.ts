@@ -74,10 +74,12 @@ export type Database = {
           id: string;
           job_type: string | null;
           location: string | null;
+          needed_date: string | null;
           payment: number | null;
           status: string | null;
           title: string;
           updated_at: string | null;
+          urgency: string | null;
         };
         Insert: {
           category?: string | null;
@@ -87,10 +89,12 @@ export type Database = {
           id?: string;
           job_type?: string | null;
           location?: string | null;
+          needed_date?: string | null;
           payment?: number | null;
           status?: string | null;
           title: string;
           updated_at?: string | null;
+          urgency?: string | null;
         };
         Update: {
           category?: string | null;
@@ -100,10 +104,12 @@ export type Database = {
           id?: string;
           job_type?: string | null;
           location?: string | null;
+          needed_date?: string | null;
           payment?: number | null;
           status?: string | null;
           title?: string;
           updated_at?: string | null;
+          urgency?: string | null;
         };
         Relationships: [
           {
@@ -297,6 +303,10 @@ export const Constants = {
 export type Profile = Tables<"profiles">;
 export type Job = Tables<"jobs">;
 export type Application = Tables<"applications">;
+
+export type JobWithProfile = Tables<"jobs"> & {
+  profiles: Pick<Profile, "full_name">;
+};
 
 export type ProfileInsert = TablesInsert<"profiles">;
 export type JobInsert = TablesInsert<"jobs">;
