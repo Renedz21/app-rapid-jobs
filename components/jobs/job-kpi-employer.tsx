@@ -1,5 +1,5 @@
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
-import { Briefcase, Users, Eye, DollarSign } from "lucide-react";
+import { Briefcase, DollarSign, Eye, Users } from "lucide-react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 export default function JobKpiEmployer() {
   return (

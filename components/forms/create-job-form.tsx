@@ -1,7 +1,10 @@
 "use client";
 
-import useCreateJob from "@/hooks/jobs/use-create-job";
+import { format } from "date-fns";
+import { es } from "date-fns/locale/es";
+import { CalendarIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Calendar } from "@/components/ui/calendar";
 import {
   Card,
   CardContent,
@@ -18,7 +21,11 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 import {
   Select,
   SelectContent,
@@ -26,15 +33,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
-import { Calendar } from "@/components/ui/calendar";
-import { CalendarIcon } from "lucide-react";
-import { format } from "date-fns";
-import { es } from "date-fns/locale/es";
+import { Textarea } from "@/components/ui/textarea";
+import useCreateJob from "@/hooks/jobs/use-create-job";
 import { cn } from "@/lib/utils";
 
 export function CreateJobForm() {
@@ -130,7 +130,7 @@ export function CreateJobForm() {
                             variant={"outline"}
                             className={cn(
                               "w-[240px] pl-3 text-left font-normal",
-                              !field.value && "text-muted-foreground"
+                              !field.value && "text-muted-foreground",
                             )}
                           >
                             {field.value ? (

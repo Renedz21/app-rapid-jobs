@@ -1,17 +1,17 @@
-import { redirect } from "next/navigation";
-import { createClient } from "@/utils/supabase/server";
 import { Plus } from "lucide-react";
+import { redirect } from "next/navigation";
 import DashboardHeader from "@/components/dashboard/dashboard-header";
+import JobCardEmployer from "@/components/jobs/job-card-employer";
+import JobKpiEmployer from "@/components/jobs/job-kpi-employer";
+import Each from "@/components/shared/each";
 import {
   Card,
+  CardContent,
+  CardDescription,
   CardHeader,
   CardTitle,
-  CardDescription,
-  CardContent,
 } from "@/components/ui/card";
-import JobCardEmployer from "@/components/jobs/job-card-employer";
-import Each from "@/components/shared/each";
-import JobKpiEmployer from "@/components/jobs/job-kpi-employer";
+import { createClient } from "@/utils/supabase/server";
 
 export default async function EmployerPostingsPage() {
   const supabase = await createClient();

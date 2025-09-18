@@ -1,11 +1,11 @@
-import { render, screen, fireEvent } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
 import { Button } from "@/components/ui/button";
 
 describe("Button Component - Critical Business Functionality", () => {
   it("renders as clickable button by default", () => {
     render(<Button>Click me</Button>);
-    
+
     const button = screen.getByRole("button", { name: "Click me" });
     expect(button).toBeInTheDocument();
     expect(button.tagName).toBe("BUTTON");
@@ -14,25 +14,29 @@ describe("Button Component - Critical Business Functionality", () => {
   it("executes onClick handler when clicked", () => {
     const handleClick = vi.fn();
     render(<Button onClick={handleClick}>Submit</Button>);
-    
+
     fireEvent.click(screen.getByRole("button"));
     expect(handleClick).toHaveBeenCalledOnce();
   });
 
   it("becomes unclickable when disabled", () => {
     const handleClick = vi.fn();
-    render(<Button disabled onClick={handleClick}>Disabled Button</Button>);
-    
+    render(
+      <Button disabled onClick={handleClick}>
+        Disabled Button
+      </Button>,
+    );
+
     const button = screen.getByRole("button");
     expect(button).toBeDisabled();
-    
+
     fireEvent.click(button);
     expect(handleClick).not.toHaveBeenCalled();
   });
 
   it("applies destructive styling for critical actions", () => {
     render(<Button variant="destructive">Delete Account</Button>);
-    
+
     const button = screen.getByRole("button");
     expect(button).toHaveClass("bg-destructive");
   });
@@ -41,9 +45,9 @@ describe("Button Component - Critical Business Functionality", () => {
     render(
       <Button asChild>
         <a href="/test">Link Button</a>
-      </Button>
+      </Button>,
     );
-    
+
     const link = screen.getByRole("link");
     expect(link).toBeInTheDocument();
     expect(link).toHaveAttribute("href", "/test");
@@ -61,9 +65,9 @@ describe("Button Component - Critical Business Functionality", () => {
     render(
       <form onSubmit={vi.fn()}>
         <Button type="button">Don't Submit</Button>
-      </form>
+      </form>,
     );
-    
+
     const button = screen.getByRole("button");
     expect(button).toHaveAttribute("type", "button");
   });

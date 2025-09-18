@@ -1,21 +1,21 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { Separator } from "@/components/ui/separator";
 import {
-  MapPin,
+  ArrowLeft,
+  Bookmark,
+  Building2,
   Calendar,
+  CheckCircle,
   Clock,
   DollarSign,
-  Bookmark,
-  ArrowLeft,
-  Building2,
+  MapPin,
   Users,
-  CheckCircle,
 } from "lucide-react";
 import Link from "next/link";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { Separator } from "@/components/ui/separator";
 
 interface JobDetailProps {
   jobId: string;
@@ -165,7 +165,10 @@ export function JobDetail({ jobId }: JobDetailProps) {
             <CardContent>
               <div className="prose prose-sm max-w-none text-muted-foreground leading-relaxed">
                 {jobData.description.split("\n\n").map((paragraph, index) => (
-                  <p key={index} className="mb-4 last:mb-0">
+                  <p
+                    key={`paragraph-${index}-${paragraph.slice(0, 20)}`}
+                    className="mb-4 last:mb-0"
+                  >
                     {paragraph}
                   </p>
                 ))}
@@ -181,7 +184,10 @@ export function JobDetail({ jobId }: JobDetailProps) {
             <CardContent>
               <ul className="space-y-3">
                 {jobData.requirements.map((requirement, index) => (
-                  <li key={index} className="flex items-start gap-3">
+                  <li
+                    key={`requirement-${index}-${requirement.slice(0, 20)}`}
+                    className="flex items-start gap-3"
+                  >
                     <CheckCircle className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
                     <span className="text-muted-foreground">{requirement}</span>
                   </li>
@@ -198,7 +204,10 @@ export function JobDetail({ jobId }: JobDetailProps) {
             <CardContent>
               <ul className="space-y-3">
                 {jobData.responsibilities.map((responsibility, index) => (
-                  <li key={index} className="flex items-start gap-3">
+                  <li
+                    key={`responsibility-${index}-${responsibility.slice(0, 20)}`}
+                    className="flex items-start gap-3"
+                  >
                     <div className="w-2 h-2 bg-primary rounded-full mt-2.5 flex-shrink-0" />
                     <span className="text-muted-foreground">
                       {responsibility}
@@ -220,7 +229,10 @@ export function JobDetail({ jobId }: JobDetailProps) {
             <CardContent>
               <ul className="space-y-3">
                 {jobData.benefits.map((benefit, index) => (
-                  <li key={index} className="flex items-start gap-3">
+                  <li
+                    key={`benefit-${index}-${benefit.slice(0, 20)}`}
+                    className="flex items-start gap-3"
+                  >
                     <CheckCircle className="w-4 h-4 text-green-600 mt-1 flex-shrink-0" />
                     <span className="text-sm text-muted-foreground">
                       {benefit}

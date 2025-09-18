@@ -1,8 +1,8 @@
-import { Button } from "@/components/ui/button";
 import { Sparkles } from "lucide-react";
-import { JobWithProfile } from "@/types/supabase";
-import JobCardWorker from "./job-card-worker";
+import { Button } from "@/components/ui/button";
+import type { JobWithProfile } from "@/types/supabase";
 import Each from "../shared/each";
+import JobCardWorker from "./job-card-worker";
 
 type JobsGridProps = {
   jobs: JobWithProfile[];

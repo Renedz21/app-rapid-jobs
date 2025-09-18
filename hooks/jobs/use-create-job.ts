@@ -1,9 +1,9 @@
+import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import {
-  CreateJobSchema,
+  type CreateJobSchema,
   createJobSchema,
 } from "@/schemas/jobs/create-job.schema";
-import { zodResolver } from "@hookform/resolvers/zod";
 import { createClient } from "@/utils/supabase/client";
 
 export default function useCreateJob() {

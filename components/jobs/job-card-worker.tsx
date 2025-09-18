@@ -1,12 +1,9 @@
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { MapPin } from "lucide-react";
-import { Clock } from "lucide-react";
-import { Calendar } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Sparkles } from "lucide-react";
-import { JobWithProfile } from "@/types/supabase";
+import { Calendar, Clock, MapPin, Sparkles } from "lucide-react";
 import Link from "next/link";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import type { JobWithProfile } from "@/types/supabase";
 
 type JobCardWorkerProps = {
   job: JobWithProfile;

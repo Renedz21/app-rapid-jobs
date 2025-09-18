@@ -28,7 +28,7 @@ export default async function WorkerJobsPage() {
               .filter((job) => job.profiles !== null)
               .map((job) => ({
                 ...job,
-                profiles: { full_name: job.profiles!.full_name ?? "" },
+                profiles: { full_name: job.profiles?.full_name ?? "" },
               }))}
           />
         </div>
