@@ -54,7 +54,11 @@ export default async function EmployerPostingsPage() {
         </CardHeader>
         <CardContent>
           <div className="space-y-4">
-            <Each of={jobs} render={(job) => <JobCardEmployer job={job} />} />
+            <Each
+              of={jobs}
+              render={(job) => <JobCardEmployer job={job} />}
+              getKey={(job) => job.id}
+            />
           </div>
         </CardContent>
       </Card>
