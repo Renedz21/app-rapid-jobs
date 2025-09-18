@@ -15,7 +15,7 @@ describe("Each", () => {
         of={mockItems}
         render={(item) => <div>{item.name}</div>}
         getKey={(item) => item.id}
-      />
+      />,
     );
 
     expect(screen.getByText("Item 1")).toBeInTheDocument();
@@ -24,14 +24,12 @@ describe("Each", () => {
   });
 
   it("passes index to render function", () => {
-    const mockRender = vi.fn((item, index) => <div>{`${item.name} - ${index}`}</div>);
-    
+    const mockRender = vi.fn((item, index) => (
+      <div>{`${item.name} - ${index}`}</div>
+    ));
+
     render(
-      <Each
-        of={mockItems}
-        render={mockRender}
-        getKey={(item) => item.id}
-      />
+      <Each of={mockItems} render={mockRender} getKey={(item) => item.id} />,
     );
 
     expect(mockRender).toHaveBeenCalledWith(mockItems[0], 0);
@@ -41,13 +39,13 @@ describe("Each", () => {
 
   it("uses getKey function for keys", () => {
     const mockGetKey = vi.fn((item, index) => `${item.id}-${index}`);
-    
+
     render(
       <Each
         of={mockItems}
         render={(item) => <div>{item.name}</div>}
         getKey={mockGetKey}
-      />
+      />,
     );
 
     expect(mockGetKey).toHaveBeenCalledWith(mockItems[0], 0);
@@ -59,9 +57,9 @@ describe("Each", () => {
     const { container } = render(
       <Each
         of={[]}
-        render={(item: any) => <div>{item.name}</div>}
-        getKey={(item: any) => item.id}
-      />
+        render={(item: { name: string }) => <div>{item.name}</div>}
+        getKey={(item: { id: number }) => item.id}
+      />,
     );
 
     expect(container.innerHTML).toBe("");
@@ -69,18 +67,18 @@ describe("Each", () => {
 
   it("returns null for non-array input and logs error", () => {
     const consoleSpy = vi.spyOn(console, "error").mockImplementation(() => {});
-    
+
     const { container } = render(
       <Each
-        of={"not an array" as any}
-        render={(item: any) => <div>{item}</div>}
-        getKey={(item: any) => item}
-      />
+        of={"not an array" as unknown as []}
+        render={(item: string) => <div>{item}</div>}
+        getKey={(item: string) => item}
+      />,
     );
 
     expect(container.firstChild).toBeNull();
     expect(consoleSpy).toHaveBeenCalledWith("The `of` prop must be an array.");
-    
+
     consoleSpy.mockRestore();
   });
 
@@ -100,7 +98,7 @@ describe("Each", () => {
           </article>
         )}
         getKey={(item) => item.id}
-      />
+      />,
     );
 
     expect(screen.getByText("Title 1")).toBeInTheDocument();

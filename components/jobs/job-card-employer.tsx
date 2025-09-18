@@ -1,7 +1,7 @@
-import { Job } from "@/types/supabase";
-import { Button } from "@/components/ui/button";
+import { Clock, DollarSign, Edit, Eye, MapPin, Trash2 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
-import { MapPin, DollarSign, Clock, Eye, Edit, Trash2 } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import type { Job } from "@/types/supabase";
 
 type JobCardEmployerProps = {
   job: Job;
@@ -34,10 +34,10 @@ export default function JobCardEmployer({ job }: JobCardEmployerProps) {
             {job.job_type === "full-time"
               ? "Tiempo completo"
               : job.job_type === "part-time"
-              ? "Tiempo parcial"
-              : job.job_type === "contract"
-              ? "Contrato"
-              : "Temporal"}
+                ? "Tiempo parcial"
+                : job.job_type === "contract"
+                  ? "Contrato"
+                  : "Temporal"}
           </div>
         </div>
       </div>

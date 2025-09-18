@@ -1,9 +1,9 @@
+import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import {
-  CreateJobSchema,
+  type CreateJobSchema,
   createJobSchema,
 } from "@/schemas/jobs/create-job.schema";
-import { zodResolver } from "@hookform/resolvers/zod";
 import { createClient } from "@/utils/supabase/client";
 
 export default function useCreateJob() {
@@ -35,9 +35,15 @@ export default function useCreateJob() {
       values.employer_id = user.id;
     }
 
+    // Create a date string in YYYY-MM-DD format to avoid timezone issues
+    const year = values.needed_date.getFullYear();
+    const month = String(values.needed_date.getMonth() + 1).padStart(2, "0");
+    const day = String(values.needed_date.getDate()).padStart(2, "0");
+    const dateString = `${year}-${month}-${day}`;
+
     const { error } = await supabase.from("jobs").insert({
       ...values,
-      needed_date: values.needed_date.toISOString(),
+      needed_date: dateString,
       urgency: values.urgency,
     });
 

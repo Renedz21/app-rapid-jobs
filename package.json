@@ -10,7 +10,10 @@
     "fix": "biome check --write",
     "format": "biome format --write",
     "test": "vitest",
-    "test:run": "vitest run"
+    "test:run": "vitest run",
+    "test:ci": "vitest run --coverage --reporter=verbose --no-watch",
+    "lint:check": "biome check --no-errors-on-unmatched",
+    "ci:full": "pnpm run lint:check && pnpm run test:ci && pnpm run build"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
