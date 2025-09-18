@@ -304,6 +304,10 @@ export type Profile = Tables<"profiles">;
 export type Job = Tables<"jobs">;
 export type Application = Tables<"applications">;
 
+export type JobWithProfile = Tables<"jobs"> & {
+  profiles: Pick<Profile, "full_name">;
+};
+
 export type ProfileInsert = TablesInsert<"profiles">;
 export type JobInsert = TablesInsert<"jobs">;
 export type ApplicationInsert = TablesInsert<"applications">;

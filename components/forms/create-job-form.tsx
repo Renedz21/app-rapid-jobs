@@ -147,7 +147,6 @@ export function CreateJobForm() {
                           mode="single"
                           selected={field.value}
                           onSelect={field.onChange}
-                          // Disable dates before today; allow today and future dates
                           disabled={(date) =>
                             date < new Date(new Date().setHours(0, 0, 0, 0)) ||
                             date < new Date("1900-01-01")
