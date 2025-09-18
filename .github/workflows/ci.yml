@@ -80,6 +80,9 @@ jobs:
       - name: Format code
         run: pnpm run format
 
+      - name: Fix code
+        run: pnpm run fix
+
       - name: Run linter
         run: pnpm run lint
 

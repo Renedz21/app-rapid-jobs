@@ -1,11 +1,12 @@
-import { Children, Fragment, ReactNode, memo } from "react";
+import { Children, Fragment, type Key, memo, type ReactNode } from "react";
 
 type EachProps<T> = {
   render: (item: T, index: number) => ReactNode;
   of: T[];
+  getKey: (item: T, index: number) => Key;
 };
 
-const Each = <T,>({ render, of }: EachProps<T>) => {
+const Each = <T,>({ render, of, getKey }: EachProps<T>) => {
   if (!Array.isArray(of)) {
     console.error("The `of` prop must be an array.");
     return null;
@@ -15,8 +16,8 @@ const Each = <T,>({ render, of }: EachProps<T>) => {
     <>
       {Children.toArray(
         of.map((item, index) => (
-          <Fragment key={index}>{render(item, index)}</Fragment>
-        ))
+          <Fragment key={getKey(item, index)}>{render(item, index)}</Fragment>
+        )),
       )}
     </>
   );
