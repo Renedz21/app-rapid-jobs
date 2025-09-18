@@ -1,7 +1,8 @@
-import { Clock, DollarSign, Edit, Eye, MapPin, Trash2 } from "lucide-react";
+import { Clock, DollarSign, Edit, MapPin } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import type { Job } from "@/types/supabase";
+import DeleteJobButton from "./actions/delete-job-button";
 
 type JobCardEmployerProps = {
   job: Job;
@@ -43,21 +44,10 @@ export default function JobCardEmployer({ job }: JobCardEmployerProps) {
       </div>
       <div className="flex items-center gap-2 mt-4 lg:mt-0">
         <Button variant="outline" size="sm" className="gap-2 bg-transparent">
-          <Eye className="w-4 h-4" />
-          Ver
-        </Button>
-        <Button variant="outline" size="sm" className="gap-2 bg-transparent">
           <Edit className="w-4 h-4" />
           Editar
         </Button>
-        <Button
-          variant="outline"
-          size="sm"
-          className="gap-2 text-destructive hover:text-destructive bg-transparent"
-        >
-          <Trash2 className="w-4 h-4" />
-          Eliminar
-        </Button>
+        <DeleteJobButton jobId={job.id} />
       </div>
     </div>
   );

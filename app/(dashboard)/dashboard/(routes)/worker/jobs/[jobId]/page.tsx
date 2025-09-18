@@ -2,14 +2,12 @@ import { JobDetail } from "@/components/jobs/job-details";
 import { createClient } from "@/utils/supabase/server";
 
 type WorkerJobPageProps = {
-  params: {
-    jobId: string;
-  };
+  params: Promise<{ jobId: string }>;
 };
 
 export default async function WorkerJobPage({ params }: WorkerJobPageProps) {
   const supabase = await createClient();
-  const { jobId } = params;
+  const { jobId } = await params;
   const { data: job } = await supabase
     .from("jobs")
     .select("*")
